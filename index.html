@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Postbox API | Contact Form with Backend</title>
+<meta name="description" content="Demo: a contact form with browser and server-style validation that saves every submission. Runs in browser demo mode.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="loading">
+<div id="loader" aria-hidden="true"><div class="ld-inner"><span class="ld-name">Postbox API</span><span class="ld-num" id="ldNum">0</span><span class="ld-bar"><b id="ldBar"></b></span></div></div>
+<canvas id="gl" aria-hidden="true"></canvas><div class="veil" aria-hidden="true"></div><div class="spot" aria-hidden="true"></div><div class="bar" aria-hidden="true"></div><div class="cur-dot" aria-hidden="true"></div><div class="cur-ring" aria-hidden="true"></div>
+<header class="nav">
+  <a class="logo" href="#home"><b></b>Postbox API</a>
+  <ul class="links"><li><a href="#form-s">Contact form</a></li><li><a href="#inbox">Inbox</a></li><li><a href="#how">How it works</a></li></ul>
+  <span class="mode-pill" id="pill"><i></i><span id="pillt">Demo mode</span></span>
+  <button class="burger" aria-label="Menu" aria-expanded="false">☰</button>
+</header>
+<main>
+<section id="home" class="intro">
+  <div class="wrap center">
+    <span class="eyebrow">Node.js · REST API · Validation</span>
+    <h1>A contact form that <span class="grad-text">talks to a backend</span>.</h1>
+    <p class="lead">Every message is validated in the browser and again on the server, then saved. Watch the request and response live.</p>
+  </div>
+</section>
+
+<section id="form-s">
+  <div class="wrap duo">
+    <form class="card" id="form" novalidate data-r>
+      <h3>Send a message</h3>
+      <div class="field"><label for="n">Name</label><input id="n" name="name" placeholder="Your full name" autocomplete="name"><span class="err"></span></div>
+      <div class="field"><label for="e">Email</label><input id="e" name="email" type="email" placeholder="you@example.com" autocomplete="email"><span class="err"></span></div>
+      <div class="field"><label for="t">Topic</label><select id="t" name="topic"><option value="">Choose a topic</option><option>Project enquiry</option><option>Bug report</option><option>General question</option></select><span class="err"></span></div>
+      <div class="field"><label for="m">Message <small class="count" id="count">0 / 500</small></label><textarea id="m" name="message" rows="5" maxlength="500" placeholder="Write at least 15 characters"></textarea><span class="err"></span></div>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn btn-p" id="send" type="submit" style="width:100%"><span class="sp"></span><span id="sendt">Send message</span></button>
+    </form>
+    <div class="term" data-r style="--d:.1s">
+      <div class="th"><i></i><i></i><i></i><span>network · POST /api/contact</span></div>
+      <pre id="log"><span class="d"># Waiting for a request...</span>
+<span class="d"># Submit the form to see the request and the server response here.</span></pre>
+    </div>
+  </div>
+</section>
+
+<section id="inbox">
+  <div class="wrap">
+    <div class="head" data-r><span class="eyebrow">Saved submissions</span><h2>Your inbox</h2><p>Every valid message is stored by the backend. In demo mode they are kept in your browser.</p></div>
+    <div class="ibar" data-r><div><b id="total">0</b> messages</div><button class="btn" id="wipe">Delete all</button></div>
+    <div class="list" id="list"></div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="head" data-r><span class="eyebrow">How it works</span><h2>Four steps from click to saved</h2></div>
+    <div class="g4">
+      <div class="card" data-r><div class="ico">1</div><h3>Browser check</h3><p>Instant feedback on name, email and message length.</p></div>
+      <div class="card" data-r style="--d:.08s"><div class="ico">2</div><h3>POST request</h3><p>JSON is sent to the REST endpoint with fetch.</p></div>
+      <div class="card" data-r style="--d:.16s"><div class="ico">3</div><h3>Server check</h3><p>The server validates again and rejects bad data with 422.</p></div>
+      <div class="card" data-r style="--d:.24s"><div class="ico">4</div><h3>Saved</h3><p>The message is stored with an id and timestamp, then confirmed with 201.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><span>© <span data-year></span> Postbox API. Demo project.</span><span>Built with HTML, CSS and JavaScript</span></div></footer>
+<script src="script.js"></script>
+</body>
+</html>
